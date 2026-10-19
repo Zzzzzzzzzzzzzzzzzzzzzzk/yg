@@ -1,0 +1,2546 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>异构设计 | YIGOU Design — 高端室内设计与全案托管</title>
+<meta name="description" content="异构设计，专注高端住宅与商业空间室内设计、软装陈设与全案托管。以国际化视野与工程级落地能力，为每一位客户打造不可复制的空间体验。">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+/* ===== CSS Variables & Reset ===== */
+:root {
+  --charcoal: #1A1A1A;
+  --charcoal-light: #2A2A2A;
+  --warm-white: #F5F3EF;
+  --warm-white-dark: #EDEAE4;
+  --bronze: #B08D57;
+  --bronze-light: #C9A96E;
+  --bronze-dark: #8E6F3E;
+  --mid-gray: #6B6B6B;
+  --light-gray: #E8E4DE;
+  --white: #FFFFFF;
+  --font-serif: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+  --font-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --nav-height: 80px;
+  --section-padding: 120px;
+  --container-max: 1320px;
+  --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  color: var(--charcoal);
+  background: var(--warm-white);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+}
+
+/* ===== Utility Classes ===== */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 24px;
+}
+
+.section-label::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--bronze);
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--charcoal);
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.section-subtitle {
+  font-size: 17px;
+  color: var(--mid-gray);
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 36px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 0;
+  transition: all var(--transition);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--charcoal);
+  color: var(--warm-white);
+  border: 1px solid var(--charcoal);
+}
+
+.btn-primary:hover {
+  background: var(--bronze);
+  border-color: var(--bronze);
+  color: var(--white);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--charcoal);
+  border: 1px solid var(--charcoal);
+}
+
+.btn-outline:hover {
+  background: var(--charcoal);
+  color: var(--warm-white);
+}
+
+.btn-light {
+  background: transparent;
+  color: var(--warm-white);
+  border: 1px solid rgba(245, 243, 239, 0.5);
+}
+
+.btn-light:hover {
+  background: var(--warm-white);
+  color: var(--charcoal);
+  border-color: var(--warm-white);
+}
+
+.btn .arrow {
+  transition: transform var(--transition);
+}
+
+.btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ===== Navigation ===== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  transition: all var(--transition);
+  background: transparent;
+}
+
+.nav.scrolled {
+  background: rgba(245, 243, 239, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  height: 68px;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--warm-white);
+  letter-spacing: 4px;
+  transition: color var(--transition);
+}
+
+.nav.scrolled .nav-logo {
+  color: var(--charcoal);
+}
+
+.nav-logo-img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav-links a {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--warm-white);
+  position: relative;
+  padding: 4px 0;
+  transition: color var(--transition);
+}
+
+.nav.scrolled .nav-links a {
+  color: var(--charcoal);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--bronze);
+  transition: width var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--bronze);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: var(--bronze);
+  color: var(--white);
+  border: 1px solid var(--bronze);
+  transition: all var(--transition);
+}
+
+.nav-cta:hover {
+  background: transparent;
+  color: var(--warm-white);
+  border-color: var(--warm-white);
+}
+
+.nav.scrolled .nav-cta:hover {
+  color: var(--charcoal);
+  border-color: var(--charcoal);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--warm-white);
+  transition: all var(--transition);
+}
+
+.nav.scrolled .nav-toggle span {
+  background: var(--charcoal);
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  max-width: 400px;
+  height: 100vh;
+  background: var(--charcoal);
+  z-index: 999;
+  padding: 120px 40px 40px;
+  transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition);
+}
+
+.mobile-menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu a {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--warm-white);
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(245, 243, 239, 0.1);
+  transition: color var(--transition), padding-left var(--transition);
+}
+
+.mobile-menu a:hover {
+  color: var(--bronze);
+  padding-left: 12px;
+}
+
+.mobile-menu .mobile-cta {
+  margin-top: auto;
+  display: block;
+  text-align: center;
+  padding: 18px;
+  background: var(--bronze);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.05);
+  animation: heroZoom 20s ease-out forwards;
+}
+
+@keyframes heroZoom {
+  to { transform: scale(1); }
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.7) 0%, rgba(26, 26, 26, 0.3) 50%, rgba(26, 26, 26, 0.5) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 40px;
+  width: 100%;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--bronze-light);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.3s forwards;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--bronze);
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(40px, 6vw, 78px);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--warm-white);
+  margin-bottom: 28px;
+  letter-spacing: -1px;
+  max-width: 800px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.5s forwards;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--bronze-light);
+}
+
+.hero-desc {
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(245, 243, 239, 0.85);
+  max-width: 560px;
+  line-height: 1.8;
+  margin-bottom: 44px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.7s forwards;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.9s forwards;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(245, 243, 239, 0.6);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  z-index: 2;
+  animation: bounce 2s infinite;
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(245, 243, 239, 0.6), transparent);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ===== Services Section ===== */
+.services {
+  padding: var(--section-padding) 0;
+  background: var(--warm-white);
+}
+
+.services-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 72px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--light-gray);
+}
+
+.service-card {
+  background: var(--warm-white);
+  padding: 48px 36px;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--bronze);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.service-card:hover {
+  background: var(--charcoal);
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+.service-number {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--bronze);
+  letter-spacing: 2px;
+  margin-bottom: 28px;
+  transition: color var(--transition);
+}
+
+.service-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 28px;
+  color: var(--charcoal);
+  transition: color var(--transition);
+}
+
+.service-card:hover .service-icon {
+  color: var(--bronze);
+}
+
+.service-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 16px;
+  transition: color var(--transition);
+}
+
+.service-card:hover .service-title {
+  color: var(--warm-white);
+}
+
+.service-desc {
+  font-size: 14px;
+  color: var(--mid-gray);
+  line-height: 1.8;
+  transition: color var(--transition);
+}
+
+.service-card:hover .service-desc {
+  color: rgba(245, 243, 239, 0.7);
+}
+
+/* ===== Projects Section ===== */
+.projects {
+  padding: var(--section-padding) 0;
+  background: var(--charcoal);
+  color: var(--warm-white);
+}
+
+.projects .section-title {
+  color: var(--warm-white);
+}
+
+.projects .section-subtitle {
+  color: rgba(245, 243, 239, 0.65);
+}
+
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 56px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.project-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: rgba(245, 243, 239, 0.6);
+  border: 1px solid rgba(245, 243, 239, 0.2);
+  transition: all var(--transition);
+  background: transparent;
+}
+
+.filter-btn:hover {
+  color: var(--warm-white);
+  border-color: rgba(245, 243, 239, 0.5);
+}
+
+.filter-btn.active {
+  background: var(--bronze);
+  border-color: var(--bronze);
+  color: var(--white);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
+  background: var(--charcoal-light);
+}
+
+.project-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-card:hover img {
+  transform: scale(1.08);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(26, 26, 26, 0.9) 0%, rgba(26, 26, 26, 0.2) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-category {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--bronze-light);
+  margin-bottom: 8px;
+}
+
+.project-name {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--warm-white);
+  margin-bottom: 4px;
+}
+
+.project-meta {
+  font-size: 13px;
+  color: rgba(245, 243, 239, 0.6);
+}
+
+.project-tag {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--warm-white);
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(4px);
+  padding: 6px 14px;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+/* ===== Process Section ===== */
+.process {
+  padding: var(--section-padding) 0;
+  background: var(--warm-white);
+}
+
+.process-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.process-header .section-subtitle {
+  margin: 0 auto;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 48px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: var(--light-gray);
+  z-index: 0;
+}
+
+.process-step {
+  text-align: center;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.step-number {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 32px;
+  border: 1px solid var(--light-gray);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--bronze);
+  background: var(--warm-white);
+  transition: all var(--transition);
+}
+
+.process-step:hover .step-number {
+  background: var(--charcoal);
+  border-color: var(--charcoal);
+  color: var(--bronze-light);
+}
+
+.step-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 12px;
+}
+
+.step-desc {
+  font-size: 14px;
+  color: var(--mid-gray);
+  line-height: 1.8;
+}
+
+/* ===== About / Stats Section ===== */
+.about {
+  padding: var(--section-padding) 0;
+  background: var(--warm-white-dark);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-image img {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+}
+
+.about-image::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 160px;
+  height: 160px;
+  border: 1px solid var(--bronze);
+  z-index: -1;
+}
+
+.about-content .section-label {
+  margin-bottom: 20px;
+}
+
+.about-content .section-title {
+  margin-bottom: 28px;
+}
+
+.about-text {
+  font-size: 16px;
+  color: var(--mid-gray);
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+
+.about-features {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.about-feature-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: var(--bronze);
+  margin-top: 2px;
+}
+
+.about-feature-text {
+  font-size: 15px;
+  color: var(--charcoal);
+  font-weight: 500;
+}
+
+.about-feature-text span {
+  display: block;
+  font-size: 13px;
+  color: var(--mid-gray);
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+/* Stats Bar */
+.stats {
+  padding: 80px 0;
+  background: var(--charcoal);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  text-align: center;
+}
+
+.stat-item {
+  position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 60px;
+  background: rgba(245, 243, 239, 0.15);
+}
+
+.stat-number {
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 700;
+  color: var(--bronze-light);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.stat-number .suffix {
+  font-size: 0.5em;
+  font-weight: 500;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: rgba(245, 243, 239, 0.7);
+  letter-spacing: 1px;
+}
+
+/* ===== Testimonials Section ===== */
+.testimonials {
+  padding: var(--section-padding) 0;
+  background: var(--warm-white);
+}
+
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.testimonials-header .section-subtitle {
+  margin: 0 auto;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.testimonial-card {
+  background: var(--white);
+  padding: 44px 36px;
+  border: 1px solid var(--light-gray);
+  transition: all var(--transition);
+  position: relative;
+}
+
+.testimonial-card:hover {
+  border-color: var(--bronze);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+.testimonial-quote {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  color: var(--bronze);
+  line-height: 1;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.testimonial-text {
+  font-size: 15px;
+  color: var(--charcoal-light);
+  line-height: 1.9;
+  margin-bottom: 32px;
+  font-style: normal;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--light-gray);
+}
+
+.testimonial-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--warm-white-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--bronze);
+  flex-shrink: 0;
+}
+
+.testimonial-info h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 2px;
+}
+
+.testimonial-info p {
+  font-size: 13px;
+  color: var(--mid-gray);
+}
+
+/* ===== Contact / Inquiry Section ===== */
+.contact {
+  padding: var(--section-padding) 0;
+  background: var(--charcoal);
+  color: var(--warm-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(176, 141, 87, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-info .section-label {
+  color: var(--bronze-light);
+}
+
+.contact-info .section-label::before {
+  background: var(--bronze);
+}
+
+.contact-info .section-title {
+  color: var(--warm-white);
+}
+
+.contact-desc {
+  font-size: 16px;
+  color: rgba(245, 243, 239, 0.7);
+  line-height: 1.9;
+  margin-bottom: 48px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.contact-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.contact-detail-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(176, 141, 87, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bronze-light);
+}
+
+.contact-detail-content h4 {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--bronze-light);
+  margin-bottom: 6px;
+}
+
+.contact-detail-content p,
+.contact-detail-content a {
+  font-size: 16px;
+  color: var(--warm-white);
+  line-height: 1.6;
+}
+
+.contact-detail-content a:hover {
+  color: var(--bronze-light);
+}
+
+.qrcode-showcase {
+  background: rgba(245, 243, 239, 0.04);
+  border: 1px solid rgba(245, 243, 239, 0.1);
+  padding: 56px 48px;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.qrcode-showcase-title {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--warm-white);
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+
+.qrcode-showcase-desc {
+  font-size: 15px;
+  color: rgba(245, 243, 239, 0.55);
+  margin-bottom: 44px;
+  line-height: 1.8;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.qrcode-showcase-list {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+
+.qrcode-showcase-item {
+  text-align: center;
+  transition: transform var(--transition);
+}
+
+.qrcode-showcase-item:hover {
+  transform: translateY(-4px);
+}
+
+.qrcode-showcase-img {
+  background: var(--warm-white);
+  padding: 10px;
+  border: 1px solid rgba(176, 141, 87, 0.25);
+  margin-bottom: 16px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.qrcode-showcase-item:hover .qrcode-showcase-img {
+  border-color: var(--bronze);
+  box-shadow: 0 8px 24px rgba(176, 141, 87, 0.15);
+}
+
+.qrcode-showcase-img img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  display: block;
+}
+
+.qrcode-showcase-item h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--warm-white);
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+
+.qrcode-showcase-item p {
+  font-size: 13px;
+  color: rgba(245, 243, 239, 0.45);
+}
+
+/* Form */
+.inquiry-form {
+  background: rgba(245, 243, 239, 0.04);
+  border: 1px solid rgba(245, 243, 239, 0.1);
+  padding: 48px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(245, 243, 239, 0.6);
+  margin-bottom: 10px;
+}
+
+.form-group label .required {
+  color: var(--bronze-light);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: transparent;
+  border: 1px solid rgba(245, 243, 239, 0.2);
+  color: var(--warm-white);
+  font-size: 15px;
+  transition: border-color var(--transition);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23B08D57' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+.form-group select option {
+  background: var(--charcoal);
+  color: var(--warm-white);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--bronze);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(245, 243, 239, 0.35);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.7;
+}
+
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+  border-color: #D4654A;
+}
+
+.form-error-msg {
+  display: none;
+  font-size: 12px;
+  color: #D4654A;
+  margin-top: 6px;
+}
+
+.form-group.error .form-error-msg {
+  display: block;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 18px;
+  background: var(--bronze);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid var(--bronze);
+  transition: all var(--transition);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.form-submit:hover {
+  background: transparent;
+  color: var(--bronze-light);
+}
+
+.form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.form-success.active {
+  display: block;
+}
+
+.form-success-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  border: 2px solid var(--bronze);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bronze-light);
+}
+
+.form-success h3 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--warm-white);
+  margin-bottom: 12px;
+}
+
+.form-success p {
+  font-size: 15px;
+  color: rgba(245, 243, 239, 0.7);
+  line-height: 1.8;
+}
+
+/* ===== Footer ===== */
+.footer {
+  background: #111111;
+  color: rgba(245, 243, 239, 0.6);
+  padding: 80px 0 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(245, 243, 239, 0.08);
+}
+
+.footer-brand .footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--warm-white);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.footer-logo-img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  line-height: 1.9;
+  margin-bottom: 24px;
+  max-width: 320px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(245, 243, 239, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(245, 243, 239, 0.6);
+  transition: all var(--transition);
+}
+
+.footer-social a:hover {
+  border-color: var(--bronze);
+  color: var(--bronze-light);
+}
+
+.footer-col h4 {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--warm-white);
+  margin-bottom: 24px;
+}
+
+.footer-col ul li {
+  margin-bottom: 14px;
+}
+
+.footer-col ul li a {
+  font-size: 14px;
+  color: rgba(245, 243, 239, 0.6);
+  transition: color var(--transition);
+}
+
+.footer-col ul li a:hover {
+  color: var(--bronze-light);
+}
+
+.footer-qrcodes {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 48px;
+  padding: 48px 0;
+  border-top: 1px solid rgba(245, 243, 239, 0.08);
+}
+
+.footer-qrcode {
+  text-align: center;
+}
+
+.footer-qrcode img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  background: var(--warm-white);
+  padding: 8px;
+  margin-bottom: 14px;
+  display: block;
+  border: 1px solid rgba(176, 141, 87, 0.3);
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.footer-qrcode:hover img {
+  border-color: var(--bronze);
+  transform: translateY(-2px);
+}
+
+.footer-qrcode span {
+  font-size: 13px;
+  color: rgba(245, 243, 239, 0.6);
+  letter-spacing: 1px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 0;
+  font-size: 13px;
+  flex-wrap: wrap;
+  gap: 16px;
+  text-align: center;
+}
+
+.footer-bottom a {
+  color: rgba(245, 243, 239, 0.5);
+}
+
+.footer-bottom a:hover {
+  color: var(--bronze-light);
+}
+
+/* ===== Scroll Reveal Animation ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 1024px) {
+  :root {
+    --section-padding: 90px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .process-steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+  }
+
+  .process-steps::before {
+    display: none;
+  }
+
+  .about-grid {
+    gap: 50px;
+  }
+
+  .about-image img {
+    height: 480px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+  }
+
+  .stat-item:not(:last-child)::after {
+    display: none;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .qrcode-showcase {
+    padding: 40px 24px;
+  }
+
+  .qrcode-showcase-title {
+    font-size: 22px;
+  }
+
+  .qrcode-showcase-desc {
+    margin-bottom: 32px;
+  }
+
+  .qrcode-showcase-list {
+    gap: 20px;
+  }
+
+  .qrcode-showcase-img img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 70px;
+  }
+
+  .container {
+    padding: 0 24px;
+  }
+
+  .nav-inner {
+    padding: 0 24px;
+  }
+
+  .nav-logo {
+    font-size: 24px;
+    letter-spacing: 3px;
+  }
+
+  .nav-links,
+  .nav-cta {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .hero-content {
+    padding: 0 24px;
+  }
+
+  .hero-title {
+    font-size: clamp(34px, 9vw, 52px);
+  }
+
+  .hero-desc {
+    font-size: 16px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .services-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    padding: 36px 28px;
+  }
+
+  .projects-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .project-card {
+    aspect-ratio: 16 / 10;
+  }
+
+  .process-steps {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .step-number {
+    width: 72px;
+    height: 72px;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-image img {
+    height: 360px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .stat-number {
+    font-size: 36px;
+  }
+
+  .inquiry-form {
+    padding: 32px 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-qrcodes {
+    gap: 24px;
+    padding: 36px 0;
+  }
+
+  .footer-qrcode img {
+    width: 88px;
+    height: 88px;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-menu {
+    padding: 100px 24px 24px;
+  }
+
+  .mobile-menu a {
+    font-size: 20px;
+  }
+
+  .filter-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .project-overlay {
+    padding: 20px;
+  }
+
+  .project-name {
+    font-size: 18px;
+  }
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hero-bg {
+    transform: scale(1);
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <span>异构设计</span>
+    </a>
+    <div class="nav-links">
+      <a href="#home">首页</a>
+      <a href="#services">服务</a>
+      <a href="#projects">案例</a>
+      <a href="#process">流程</a>
+      <a href="#about">关于</a>
+      <a href="#contact">联系</a>
+    </div>
+    <a href="#contact" class="nav-cta">免费咨询</a>
+    <button class="nav-toggle" id="navToggle" aria-label="打开菜单">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu-overlay" id="mobileOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">首页</a>
+  <a href="#services">服务范围</a>
+  <a href="#projects">精选案例</a>
+  <a href="#process">设计流程</a>
+  <a href="#about">关于我们</a>
+  <a href="#contact">联系我们</a>
+  <a href="#contact" class="mobile-cta">预约免费咨询</a>
+</div>
+
+<!-- ===== Hero Section ===== -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">HETEROGENEOUS DESIGN STUDIO</div>
+    <h1 class="hero-title">以空间叙事<br>定义<em>不可复制</em>的生活美学</h1>
+    <p class="hero-desc">异构设计，专注高端住宅与商业空间的全案设计与落地托管。从概念到竣工，以国际化视野与工程级精度，为每一位客户打造兼具艺术感与功能性的理想空间。</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">
+        预约设计咨询
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#projects" class="btn btn-light">
+        浏览作品案例
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ===== Services Section ===== -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <div>
+        <div class="section-label">OUR SERVICES</div>
+        <h2 class="section-title">全链路设计服务<br>覆盖空间生命周期</h2>
+      </div>
+      <p class="section-subtitle">从初次沟通到最终交付，我们提供一站式专业服务，确保每个环节的品质与效率，让您全程无忧。</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-number">01</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <h3 class="service-title">住宅空间设计</h3>
+        <p class="service-desc">别墅、大平层、公寓等私人住宅的全案设计，深度理解居住者生活方式，打造专属理想居所。</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-number">02</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        <h3 class="service-title">商业空间设计</h3>
+        <p class="service-desc">办公、餐饮、零售、会所等商业空间设计，以品牌调性为核心，创造兼具商业价值与体验感的空间。</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-number">03</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
+          <line x1="16" y1="8" x2="2" y2="22"/>
+          <line x1="17.5" y1="15" x2="9" y2="15"/>
+        </svg>
+        <h3 class="service-title">软装陈设设计</h3>
+        <p class="service-desc">家具、灯具、艺术品、窗帘布艺等软装整体规划与采购，以专业审美提升空间质感与艺术氛围。</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-number">04</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <h3 class="service-title">全案落地托管</h3>
+        <p class="service-desc">设计、施工、软装一体化全流程管理，严格把控工期与品质，从图纸到实景的无缝衔接。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Projects Section ===== -->
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="projects-header reveal">
+      <div>
+        <div class="section-label">SELECTED WORKS</div>
+        <h2 class="section-title">精选案例作品</h2>
+        <p class="section-subtitle">每一个项目都是独特的空间叙事，以下是我们近期的部分代表作品。</p>
+      </div>
+      <div class="project-filters">
+        <button class="filter-btn active" data-filter="all">全部</button>
+        <button class="filter-btn" data-filter="residential">住宅</button>
+        <button class="filter-btn" data-filter="commercial">商业</button>
+        <button class="filter-btn" data-filter="hospitality">酒店会所</button>
+      </div>
+    </div>
+    <div class="projects-grid" id="projectsGrid">
+      <div class="project-card reveal" data-category="residential">
+        <span class="project-tag">01</span>
+        <img src="images/project-01.jpg" alt="现代简约住宅客厅设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">住宅空间 / 大平层</div>
+          <h3 class="project-name">静谧之光</h3>
+          <p class="project-meta">280m&sup2; · 上海 · 2025</p>
+        </div>
+      </div>
+      <div class="project-card reveal" data-category="residential">
+        <span class="project-tag">02</span>
+        <img src="images/project-02.jpg" alt="高端主卧套房设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">住宅空间 / 别墅</div>
+          <h3 class="project-name">栖居诗篇</h3>
+          <p class="project-meta">450m&sup2; · 杭州 · 2025</p>
+        </div>
+      </div>
+      <div class="project-card reveal" data-category="residential">
+        <span class="project-tag">03</span>
+        <img src="images/project-03.jpg" alt="开放式厨房餐厅设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">住宅空间 / 公寓</div>
+          <h3 class="project-name">暖木之家</h3>
+          <p class="project-meta">160m&sup2; · 深圳 · 2024</p>
+        </div>
+      </div>
+      <div class="project-card reveal" data-category="commercial">
+        <span class="project-tag">04</span>
+        <img src="images/project-04.jpg" alt="高端商业办公空间设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">商业空间 / 办公</div>
+          <h3 class="project-name">未来办公</h3>
+          <p class="project-meta">680m&sup2; · 北京 · 2025</p>
+        </div>
+      </div>
+      <div class="project-card reveal" data-category="hospitality">
+        <span class="project-tag">05</span>
+        <img src="images/project-05.jpg" alt="高端会所酒店大堂设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">酒店会所 / 大堂</div>
+          <h3 class="project-name">鎏金岁月</h3>
+          <p class="project-meta">1200m&sup2; · 成都 · 2024</p>
+        </div>
+      </div>
+      <div class="project-card reveal" data-category="residential">
+        <span class="project-tag">06</span>
+        <img src="images/project-06.jpg" alt="高端卫浴空间设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">住宅空间 / 别墅</div>
+          <h3 class="project-name">大理石之境</h3>
+          <p class="project-meta">520m&sup2; · 苏州 · 2025</p>
+        </div>
+      </div>
+      <div class="project-card reveal" data-category="residential">
+        <span class="project-tag">07</span>
+        <img src="images/project-07.jpg" alt="现代简约书房设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">住宅空间 / 书房</div>
+          <h3 class="project-name">书香雅韵</h3>
+          <p class="project-meta">45m&sup2; · 常州 · 2024</p>
+        </div>
+      </div>
+      <div class="project-card reveal" data-category="commercial">
+        <span class="project-tag">08</span>
+        <img src="images/project-08.jpg" alt="高端茶室空间设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">商业空间 / 茶室</div>
+          <h3 class="project-name">禅意茶境</h3>
+          <p class="project-meta">60m&sup2; · 杭州 · 2025</p>
+        </div>
+      </div>
+      <div class="project-card reveal" data-category="hospitality">
+        <span class="project-tag">09</span>
+        <img src="images/project-09.jpg" alt="精品酒店客房设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">酒店会所 / 客房</div>
+          <h3 class="project-name">静谧旅居</h3>
+          <p class="project-meta">45m&sup2; · 苏州 · 2024</p>
+        </div>
+      </div>
+      <div class="project-card reveal" data-category="commercial">
+        <span class="project-tag">10</span>
+        <img src="images/project-10.jpg" alt="高端商业餐厅空间设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">商业空间 / 餐厅</div>
+          <h3 class="project-name">食光</h3>
+          <p class="project-meta">320m&sup2; · 常州 · 2025</p>
+        </div>
+      </div>
+      <div class="project-card reveal" data-category="commercial">
+        <span class="project-tag">11</span>
+        <img src="images/project-11.jpg" alt="极简高端零售店空间设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">商业空间 / 零售</div>
+          <h3 class="project-name">极简零售</h3>
+          <p class="project-meta">180m&sup2; · 无锡 · 2025</p>
+        </div>
+      </div>
+      <div class="project-card reveal" data-category="hospitality">
+        <span class="project-tag">12</span>
+        <img src="images/project-12.jpg" alt="高端SPA水疗会所空间设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">酒店会所 / SPA</div>
+          <h3 class="project-name">水境SPA</h3>
+          <p class="project-meta">280m&sup2; · 苏州 · 2024</p>
+        </div>
+      </div>
+      <div class="project-card reveal" data-category="hospitality">
+        <span class="project-tag">13</span>
+        <img src="images/project-13.jpg" alt="度假酒店套房空间设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">酒店会所 / 度假酒店</div>
+          <h3 class="project-name">山居度假</h3>
+          <p class="project-meta">85m&sup2; · 杭州 · 2025</p>
+        </div>
+      </div>
+      <div class="project-card reveal" data-category="residential">
+        <span class="project-tag">14</span>
+        <img src="images/project-14.jpg" alt="高端住宅儿童房空间设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">住宅空间 / 儿童房</div>
+          <h3 class="project-name">童趣空间</h3>
+          <p class="project-meta">35m&sup2; · 常州 · 2024</p>
+        </div>
+      </div>
+      <div class="project-card reveal" data-category="residential">
+        <span class="project-tag">15</span>
+        <img src="images/project-15.jpg" alt="复式公寓挑高客厅空间设计" loading="lazy">
+        <div class="project-overlay">
+          <div class="project-category">住宅空间 / 复式</div>
+          <h3 class="project-name">挑高复式</h3>
+          <p class="project-meta">220m&sup2; · 无锡 · 2025</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Process Section ===== -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="process-header reveal">
+      <div class="section-label" style="justify-content: center;">DESIGN PROCESS</div>
+      <h2 class="section-title">四步全流程<br>专业把控每个细节</h2>
+      <p class="section-subtitle">标准化的设计流程确保项目高效推进，每一步都有专业团队严格把控。</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-number">01</div>
+        <h3 class="step-title">需求沟通</h3>
+        <p class="step-desc">深入了解客户生活方式、审美偏好与功能需求，现场勘测并确认项目预算与周期。</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-number">02</div>
+        <h3 class="step-title">方案设计</h3>
+        <p class="step-desc">出具概念方案与平面布局，经确认后深化为效果图、施工图与材料清单。</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-number">03</div>
+        <h3 class="step-title">施工落地</h3>
+        <p class="step-desc">全程跟进施工进度，协调各工种配合，定期现场巡检确保工艺品质达标。</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-number">04</div>
+        <h3 class="step-title">软装交付</h3>
+        <p class="step-desc">家具、灯具、艺术品等软装进场布置，最终验收交付并提供售后维护服务。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== About Section ===== -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image reveal">
+        <img src="images/studio.jpg" alt="异构设计工作室工作场景">
+      </div>
+      <div class="about-content reveal">
+        <div class="section-label">ABOUT YIGOU</div>
+        <h2 class="section-title">以设计为媒介<br>连接生活与艺术</h2>
+        <p class="about-text">常州异构装饰设计有限公司（品牌"异构设计"）成立于2022年，是一支由资深建筑师、室内设计师与软装顾问组成的专业团队。我们相信，好的设计不仅是视觉的呈现，更是对生活方式的深度理解与重塑。</p>
+        <p class="about-text">四年来，我们始终坚持"一个项目，一个故事"的设计理念，拒绝模板化复制，为每一位客户量身定制独一无二的空间解决方案。从一线城市的高端住宅到标杆商业项目，我们的作品遍布全国20余座城市。</p>
+        <div class="about-features">
+          <div class="about-feature">
+            <svg class="about-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <div class="about-feature-text">国际化设计视野<span>团队成员拥有海外留学与知名事务所工作背景</span></div>
+          </div>
+          <div class="about-feature">
+            <svg class="about-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <div class="about-feature-text">工程级落地能力<span>自有施工管理团队，设计效果还原度达95%以上</span></div>
+          </div>
+          <div class="about-feature">
+            <svg class="about-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <div class="about-feature-text">全周期服务保障<span>从设计到售后，提供两年质保与终身维护咨询</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stats Section ===== -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-number"><span class="counter" data-target="320">0</span><span class="suffix">+</span></div>
+        <div class="stat-label">完成项目</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-number"><span class="counter" data-target="4">0</span><span class="suffix">年</span></div>
+        <div class="stat-label">行业经验</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-number"><span class="counter" data-target="98">0</span><span class="suffix">%</span></div>
+        <div class="stat-label">客户满意度</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-number"><span class="counter" data-target="20">0</span><span class="suffix">+</span></div>
+        <div class="stat-label">服务城市</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact / Inquiry Section ===== -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="section-label">GET IN TOUCH</div>
+        <h2 class="section-title">开启您的<br>理想空间之旅</h2>
+        <p class="contact-desc">无论您是正在规划新居、考虑商业空间升级，还是仅仅想了解更多设计可能性，我们都期待与您交流。扫码关注官方账号，或通过以下方式直接联系我们。</p>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="contact-detail-content">
+              <h4>咨询热线</h4>
+              <a href="tel:188-6146-5998">188-6146-5998</a>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-detail-content">
+              <h4>工作室地址</h4>
+              <p>常州市钟楼区新动能荆川产业园4楼</p>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="contact-detail-content">
+              <h4>营业时间</h4>
+              <p>周一至周日 09:00 - 17:30</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="qrcode-showcase">
+          <h3 class="qrcode-showcase-title">扫码关注我们</h3>
+          <p class="qrcode-showcase-desc">关注异构设计官方账号，获取最新作品案例、设计灵感与专属优惠信息</p>
+          <div class="qrcode-showcase-list">
+            <div class="qrcode-showcase-item">
+              <div class="qrcode-showcase-img">
+                <img src="images/douyin.png" alt="抖音二维码">
+              </div>
+              <h4>抖音</h4>
+              <p>看设计实景视频</p>
+            </div>
+            <div class="qrcode-showcase-item">
+              <div class="qrcode-showcase-img">
+                <img src="images/xiaohongshu.png" alt="小红书二维码">
+              </div>
+              <h4>小红书</h4>
+              <p>种草灵感与案例</p>
+            </div>
+            <div class="qrcode-showcase-item">
+              <div class="qrcode-showcase-img">
+                <img src="images/wechat.png" alt="微信二维码">
+              </div>
+              <h4>微信</h4>
+              <p>一对一咨询设计</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span>异构设计</span>
+        </div>
+        <p>专注高端住宅与商业空间的全案设计与落地托管，以国际化视野与工程级精度，为每一位客户打造不可复制的理想空间。</p>
+        <div class="footer-social">
+          <a href="#" aria-label="微信">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+          <a href="#" aria-label="微博">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14c0-2 2-4 4-4s4 2 4 4"/></svg>
+          </a>
+          <a href="#" aria-label="小红书">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>服务范围</h4>
+        <ul>
+          <li><a href="#services">住宅空间设计</a></li>
+          <li><a href="#services">商业空间设计</a></li>
+          <li><a href="#services">软装陈设设计</a></li>
+          <li><a href="#services">全案落地托管</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>快速导航</h4>
+        <ul>
+          <li><a href="#home">首页</a></li>
+          <li><a href="#projects">案例作品</a></li>
+          <li><a href="#process">设计流程</a></li>
+          <li><a href="#about">关于我们</a></li>
+          <li><a href="#contact">联系我们</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>联系方式</h4>
+        <ul>
+          <li><a href="tel:188-6146-5998">188-6146-5998</a></li>
+          <li>常州市钟楼区新动能荆川产业园4楼</li>
+          <li>周一至周日 09:00-17:30</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 常州异构装饰设计有限公司保留所有权利。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // ===== Navigation Scroll Effect =====
+  var nav = document.getElementById('nav');
+  var lastScroll = 0;
+
+  function handleNavScroll() {
+    var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    if (currentScroll > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    lastScroll = currentScroll;
+  }
+
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+  handleNavScroll();
+
+  // ===== Mobile Menu Toggle =====
+  var navToggle = document.getElementById('navToggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mobileOverlay = document.getElementById('mobileOverlay');
+
+  function toggleMobileMenu() {
+    navToggle.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    mobileOverlay.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+  }
+
+  function closeMobileMenu() {
+    navToggle.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    mobileOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  navToggle.addEventListener('click', toggleMobileMenu);
+  mobileOverlay.addEventListener('click', closeMobileMenu);
+
+  // Close mobile menu when clicking links
+  var mobileLinks = mobileMenu.querySelectorAll('a');
+  for (var i = 0; i < mobileLinks.length; i++) {
+    mobileLinks[i].addEventListener('click', closeMobileMenu);
+  }
+
+  // ===== Smooth Scroll for Anchor Links =====
+  var anchorLinks = document.querySelectorAll('a[href^="#"]');
+  for (var j = 0; j < anchorLinks.length; j++) {
+    anchorLinks[j].addEventListener('click', function(e) {
+      var targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      var target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        var navHeight = nav.offsetHeight;
+        var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight + 1;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  }
+
+  // ===== Project Filter =====
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var projectCards = document.querySelectorAll('.project-card');
+
+  for (var k = 0; k < filterBtns.length; k++) {
+    filterBtns[k].addEventListener('click', function() {
+      // Update active button
+      for (var f = 0; f < filterBtns.length; f++) {
+        filterBtns[f].classList.remove('active');
+      }
+      this.classList.add('active');
+
+      var filter = this.getAttribute('data-filter');
+
+      for (var p = 0; p < projectCards.length; p++) {
+        var card = projectCards[p];
+        var category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          card.style.display = '';
+          // Trigger reflow for animation
+          void card.offsetWidth;
+          card.style.opacity = '1';
+          card.style.transform = 'scale(1)';
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.95)';
+          (function(c) {
+            setTimeout(function() { c.style.display = 'none'; }, 300);
+          })(card);
+        }
+      }
+    });
+  }
+
+  // ===== Scroll Reveal Animation =====
+  var revealElements = document.querySelectorAll('.reveal');
+
+  function checkReveal() {
+    var windowHeight = window.innerHeight;
+    var revealPoint = 100;
+
+    for (var r = 0; r < revealElements.length; r++) {
+      var el = revealElements[r];
+      var elementTop = el.getBoundingClientRect().top;
+      if (elementTop < windowHeight - revealPoint) {
+        el.classList.add('visible');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', checkReveal, { passive: true });
+  window.addEventListener('resize', checkReveal);
+  checkReveal();
+
+  // ===== Counter Animation =====
+  var counters = document.querySelectorAll('.counter');
+  var countersAnimated = false;
+
+  function animateCounters() {
+    if (countersAnimated) return;
+    var statsSection = document.querySelector('.stats');
+    if (!statsSection) return;
+    var sectionTop = statsSection.getBoundingClientRect().top;
+    var windowHeight = window.innerHeight;
+
+    if (sectionTop < windowHeight - 80) {
+      countersAnimated = true;
+      for (var c = 0; c < counters.length; c++) {
+        animateCounter(counters[c]);
+      }
+    }
+  }
+
+  function animateCounter(el) {
+    var target = parseInt(el.getAttribute('data-target'), 10);
+    var duration = 2000;
+    var startTime = null;
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var progress = Math.min((timestamp - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = target;
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  window.addEventListener('scroll', animateCounters, { passive: true });
+  animateCounters();
+
+  // ===== Form Validation & Submission =====
+  var form = document.getElementById('inquiryForm');
+  var formSuccess = document.getElementById('formSuccess');
+
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var isValid = true;
+      var formGroups = form.querySelectorAll('.form-group');
+
+      // Reset all errors
+      for (var g = 0; g < formGroups.length; g++) {
+        formGroups[g].classList.remove('error');
+      }
+
+      // Validate name
+      var nameInput = form.querySelector('input[name="name"]');
+      if (!nameInput.value.trim()) {
+        nameInput.closest('.form-group').classList.add('error');
+        isValid = false;
+      }
+
+      // Validate phone
+      var phoneInput = form.querySelector('input[name="phone"]');
+      var phoneRegex = /^1[3-9]\d{9}$/;
+      if (!phoneInput.value.trim() || !phoneRegex.test(phoneInput.value.trim())) {
+        phoneInput.closest('.form-group').classList.add('error');
+        isValid = false;
+      }
+
+      // Validate project type
+      var projectTypeSelect = form.querySelector('select[name="projectType"]');
+      if (!projectTypeSelect.value) {
+        projectTypeSelect.closest('.form-group').classList.add('error');
+        isValid = false;
+      }
+
+      if (!isValid) {
+        // Scroll to first error using window.scrollTo
+        var firstError = form.querySelector('.form-group.error');
+        if (firstError) {
+          var errorTop = firstError.getBoundingClientRect().top + window.pageYOffset - 100;
+          window.scrollTo({ top: errorTop, behavior: 'smooth' });
+        }
+        return;
+      }
+
+      // Simulate form submission
+      var submitBtn = form.querySelector('.form-submit');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '提交中...';
+
+      setTimeout(function() {
+        form.style.display = 'none';
+        formSuccess.classList.add('active');
+      }, 1200);
+    });
+
+    // Clear error on input
+    var formInputs = form.querySelectorAll('input, select, textarea');
+    for (var inp = 0; inp < formInputs.length; inp++) {
+      formInputs[inp].addEventListener('input', function() {
+        this.closest('.form-group').classList.remove('error');
+      });
+      formInputs[inp].addEventListener('change', function() {
+        this.closest('.form-group').classList.remove('error');
+      });
+    }
+  }
+
+  // ===== Active Nav Link on Scroll =====
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('.nav-links a');
+
+  function updateActiveNav() {
+    var scrollPos = window.pageYOffset + 120;
+    for (var s = 0; s < sections.length; s++) {
+      var section = sections[s];
+      var top = section.offsetTop;
+      var height = section.offsetHeight;
+      var id = section.getAttribute('id');
+      if (scrollPos >= top && scrollPos < top + height) {
+        for (var n = 0; n < navLinks.length; n++) {
+          navLinks[n].style.color = '';
+          if (navLinks[n].getAttribute('href') === '#' + id) {
+            navLinks[n].style.color = 'var(--bronze)';
+          }
+        }
+      }
+    }
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+})();
+</script>
+
+</body>
+</html>
